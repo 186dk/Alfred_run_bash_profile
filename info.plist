@@ -40,7 +40,7 @@
 	<key>createdby</key>
 	<string>Martin Shi</string>
 	<key>description</key>
-	<string></string>
+	<string>Run alias or function of .bash_profile</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -225,6 +225,10 @@ echo '{"items":
 			<integer>130</integer>
 		</dict>
 	</dict>
+	<key>variablesdontexport</key>
+	<array/>
+	<key>version</key>
+	<string>v1.0</string>
 	<key>webaddress</key>
 	<string>186.dk</string>
 </dict>

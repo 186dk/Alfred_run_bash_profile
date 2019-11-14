@@ -1,13 +1,35 @@
 <?php
 
+// remove first argument
+$argv[0] = '';
+$queryString = trim($argv[1]);
+$searchArr = explode(' ', $queryString);
+
+if (count($searchArr) == 1) {
+    $queryString = $searchArr[0];
+    $itemsArr = getItems($queryString);
+} else {
+    // if with parameter, so only show one item
+    $itemsArr = getItems($queryString, true);
+}
+
+$resultArr = [
+    'items' => $itemsArr
+];
+// Loop through our array, show HTML source as HTML source; and line numbers too.
+
+$result = json_encode($resultArr);
+echo $result;
+
+############ Help func #################
 /**
  * @param string $queryString
  * @param bool $withParameter true only show one item
  * @return array
  */
-function getCmds(string $queryString, $withParameter = false): array
+function getItems(string $queryString, $withParameter = false): array
 {
-//echo $firstWord;
+//Get bash profile from home path;
     $home = $_SERVER['HOME'];
     $profilePath = $home . '/.bash_profile';
     $lines = file($profilePath);
@@ -47,6 +69,8 @@ function getCmds(string $queryString, $withParameter = false): array
             $arg = "";
             $canAddItem = false;
 
+            // Comment tag in bash profile
+            // #alfred; command:XXX; parameters:XXX, ('none' means no parameter); description: XXX
             foreach ($bashCommentSegments as $segment) {
                 // replace space
                 $segment = trim(preg_replace('/\s\s+/', ' ', $segment));
@@ -69,11 +93,10 @@ function getCmds(string $queryString, $withParameter = false): array
                             $canAddItem = true;
                             $stop = true;
                         }
-                    } elseif (substr($bashCmd, 0, strlen($queryString)) != $queryString) {
-                            // not start with query letter, stop to show
-                            break;
-                        }
-
+                    } elseif (!empty($queryString) && strpos($bashCmd, $queryString) !== 0) {
+                        // not start with query letter, stop to show
+                        break;
+                    }
 
                     $title .= 'Cmd: ' . $bashCmd;
                 }
@@ -89,7 +112,6 @@ function getCmds(string $queryString, $withParameter = false): array
                     $subTitle .= $value;
                 }
 
-
                 // add custom keys that defined in bash file
 //                if (!in_array($key, ['command', 'parameters', 'description'])) {
 //                    $oneCmd[$key] = $value;
@@ -97,7 +119,7 @@ function getCmds(string $queryString, $withParameter = false): array
                 if (!$withParameter || ($withParameter && $canAddItem)) {
                     $oneCmd ['title'] = $title;
                     $oneCmd ['uid'] = $uid;
-                    $oneCmd['arg'] = $arg;
+                    $oneCmd ['arg'] = $arg;
                     $oneCmd ['subtitle'] = $subTitle;
                     $oneCmd ['valid'] = $valid ? "true" : "false";
                     $oneCmd ['autocomplete'] = $arg;
@@ -116,28 +138,5 @@ function getCmds(string $queryString, $withParameter = false): array
 }
 
 
-// remove first argument
-$argv[0] = '';
-$queryString = trim($argv[1]);
-
-$searchArr = explode(' ', $queryString);
-
-if (count($searchArr) == 1) {
-    $queryString = $searchArr[0];
-    $itemsArr = getCmds($queryString);
-} else {
-    // if with parameter, so only show one item
-    $itemsArr = getCmds($queryString, true);
-
-}
-
-$resultArr = [
-    'items' => $itemsArr
-];
-// Loop through our array, show HTML source as HTML source; and line numbers too.
-
-
-$result = json_encode($resultArr);
-echo $result;
 
 
