@@ -21,3 +21,11 @@ Where keyword
 ## Run
 
 Run alfred and type ! 
+
+
+## Test
+
+Run command 
+```php
+php run.php vg
+```
