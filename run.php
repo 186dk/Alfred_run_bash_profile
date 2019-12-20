@@ -22,7 +22,7 @@ $resultArr = [
 ];
 // Loop through our array, show HTML source as HTML source; and line numbers too.
 
-$result = json_encode($resultArr);
+$result = json_encode($resultArr, JSON_THROW_ON_ERROR, 512);
 echo $result;
 
 
