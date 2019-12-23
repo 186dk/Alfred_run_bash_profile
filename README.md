@@ -25,7 +25,13 @@ Where keyword
 0. If there has duplicate alias or function names, Alfred only display first one.
 0. Custom comment tag has higher priority then alias and functions.
 0. Support display recommendations from keyword in camelcase, underscore and hyphen.
-
+0. Add comment and parameter hint in alias functions as following:
+    ```
+    # Moves a file to the MacOS trash
+    # parameters: path
+    trash () { command mv "$@" ~/.Trash ; }
+    ```
+    Can use parameter|parameters|var
 ## Test
 In workflow source folder, run command: 
 ```php
