@@ -2,7 +2,7 @@
 include 'functions.php';
 // remove first argument
 $argv[0] = '';
-$queryString = trim($argv[1]);
+$queryString = $argv[1];
 $searchArr = explode(' ', $queryString);
 $home = $_SERVER['HOME'];
 $profilePath = $home . '/.bash_profile';

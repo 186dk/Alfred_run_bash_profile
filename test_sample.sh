@@ -2,11 +2,32 @@
 
 #alfred; command:ll; parameters: none; description: list folder
 alias ll='ls -alh'
-alias less='less -FSRXc'                    # Preferred 'less' implementation
 
+# Preferred 'less' implementation
+# Implement with FSRXc
+alias less='less -FSRXc'
 alias mkdir='mkdir -pv'  # Preferred 'mkdir' implementation
-
 alias alfred_help='echo "This is a alfred help message"'  #alias comment
+
+trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
+
+
+#   -----------------------------
+#   NOT Function comment
+#   -----------------------------
+
+# Count of non-hidden files in current dir
+# parameters: none | path
+# $1 is the directory to count
+numFiles(){
+  cd "$1" || return
+  echo $(ls -1 | wc -l)
+}
+
+# Opens any file in MacOS Quicklook Preview
+# parameters: file
+ql () { qlmanage -p "$*" >& /dev/null; }
+
 ## alfred reserve keywords ##
 #alfred; command:killp; parameters:port number; description: kill process with given port number
 killp(){
@@ -20,7 +41,7 @@ killp(){
     fi
 }
 
-#alfred; command:vg; parameters:up, destroy, halt, ssh; description: vagrant command on homestead
+#alfred; command:vg; parameters:up| destroy| halt| ssh; description: vagrant command on homestead
 function vg() {
     cd ~/Homestead || exit
     vagrant "$*"

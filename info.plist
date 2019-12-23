@@ -63,7 +63,7 @@
 				<key>escaping</key>
 				<integer>100</integer>
 				<key>keyword</key>
-				<string>!</string>
+				<string>&gt;</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>

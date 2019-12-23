@@ -9,21 +9,16 @@
  */
 function getBashCommands(array $lines, string $queryString, $withParameter = false): array
 {
-//$resultArr = [
-//    'items' => [
-//        [
-//            'valid' => 'true',
-//            'uid' => 'running-cmd-chrome',
-//            'title' => 'Open chrome',
-//            'subtitle' => 'Please type url without http',
-//            'arg' => $queryString
-//        ]
-//    ]
-//];
 	$itemsArr = [];
 	$stop     = false;
 
+	// put multi lines comments in comment container.
+	$commentContainer = '';
+	// retrieve comment string of alias or functions, except custom tag (#alfred;)
+	$clearCommentString = false;
+
 	foreach ($lines as $line) {
+
 		$line = str_replace(array("\r", "\n"), '', $line);
 
 		$oneCmd             = [];
@@ -34,6 +29,7 @@ function getBashCommands(array $lines, string $queryString, $withParameter = fal
 		$arg                = "";
 		$canAddItemToResult = false;
 
+		// start with comment tag
 		if (strpos($line, '#alfred;') === 0) {
 			// lower case
 			$bashCommentSegments = explode(';', $line);
@@ -77,7 +73,7 @@ function getBashCommands(array $lines, string $queryString, $withParameter = fal
 					if ($value === 'none') {
 						$valid = true;
 					}
-					$cmd .= " (parameter: $value) ";
+					$cmd .= " ($value) ";
 				}
 
 				if ($key === 'description') {
@@ -88,16 +84,69 @@ function getBashCommands(array $lines, string $queryString, $withParameter = fal
 					$oneCmd = alfredItem($cmd, $uid, $arg, $subTitle, $valid);
 				}
 			}
-			$itemsArr = addAlfredItem($oneCmd, $itemsArr);
+			$itemsArr           = addAlfredItem($oneCmd, $itemsArr);
+			$clearCommentString = true;
 
-		} else if ($aliasCmd = getAliasCmd($line, $queryString)) {
+		} else if ($aliasCmdArr = getAliasCmd($line, $queryString)) {
+			[$commentString] = getCommentLines($commentContainer);
+
 			// check if it is alias
-			[$alias, $content] = $aliasCmd;
-			$title    = 'Alias: ' . $alias;
-			$valid    = true;
-			$arg      = $alias;
-			$oneCmd   = alfredItem($title, $alias, $arg, $content, $valid);
-			$itemsArr = addAlfredItem($oneCmd, $itemsArr);
+			[$aliasCmd, $content] = $aliasCmdArr;
+
+			$title              = 'Alias: ' . $aliasCmd;
+			$subTitle           = trim($commentString, ', ') . $content;
+			$valid              = true;
+			$arg                = $aliasCmd;
+			$oneCmd             = alfredItem($title, $aliasCmd, $arg, $subTitle, $valid);
+			$itemsArr           = addAlfredItem($oneCmd, $itemsArr);
+			$clearCommentString = true;
+
+		} else if ($funcCmdArr = getFunctionCmds($line, $queryString)) {
+			[$commentString, $parameterString] = getCommentLines($commentContainer);
+			// check if it is functions
+			[$funcCmd, $content] = $funcCmdArr;
+
+			// check with parameter
+			if ($withParameter) {
+				[$inputCmd, $firstPara] = explode(' ', $queryString);
+			} else {
+				$inputCmd = $queryString;
+			}
+
+			// check if contains parameter string
+			if ( ! empty($parameterString)) {
+				$valid           = false;
+				$parameterString = '(' . $parameterString . ')';
+			}else{
+				// if without parameter string, is valid
+				$valid = true;
+			}
+
+			$arg = $funcCmd;
+			if ($inputCmd === $funcCmd) {
+				$stop = true;
+				if (preg_match("/ *none */i", $parameterString)) {
+					$valid = true;
+				} elseif (isset($firstPara) && ! empty($firstPara)) {
+					$valid    = true;
+					$arg = $queryString;
+				}
+			}
+
+			$title              = 'Func: ' . $funcCmd . $parameterString;
+			$subTitle           = trim($commentString, ', ') . $content;
+			$oneCmd             = alfredItem($title, $funcCmd, $arg, $subTitle, $valid);
+			$itemsArr           = addAlfredItem($oneCmd, $itemsArr);
+			$clearCommentString = true;
+		} elseif ($comment = getComment($line)) {
+			$clearCommentString = false;
+			$commentContainer   .= $comment . PHP_EOL;
+		} elseif (empty(trim($line))) {
+			$clearCommentString = true;
+		}
+
+		if ($clearCommentString) {
+			$commentContainer = '';
 		}
 
 		if ($stop) {
@@ -107,6 +156,44 @@ function getBashCommands(array $lines, string $queryString, $withParameter = fal
 	}
 
 	return array_values($itemsArr);
+}
+
+/**
+ * @param string $commentContainer
+ *
+ * @return array
+ */
+function getCommentLines(string $commentContainer): array
+{
+	$parameterString = false;
+	$commentString   = '';
+
+	if ( ! empty($commentContainer)) {
+		$commentLinesArr = explode(PHP_EOL, $commentContainer);
+		$commentString   = '';
+		foreach ($commentLinesArr as $commentLine) {
+			$regex = "/^ *(parameter|parameters|var): */i";
+			preg_match($regex, $commentLine, $matches);
+			if ( ! empty($matches)) {
+				$parameterString = str_replace($matches[0], '', $commentLine);
+			} else {
+				$commentString .= $commentLine . ', ';
+			}
+		}
+	}
+
+	return array($commentString, $parameterString);
+}
+
+function getComment($line)
+{
+	$regex = "/^ *#+ */";
+	preg_match($regex, $line, $matches);
+	if ( ! empty($matches)) {
+		return str_replace($matches[0], '', $line);
+	}
+
+	return false;
 }
 
 /**
@@ -122,8 +209,8 @@ function alfredQueryMatch(string $queryString, string $bashProfileCmd): bool
 		return true;
 	}
 
-	$queryString = strtolower($queryString);
-	$bashProfileCmd = trim($bashProfileCmd);
+	$queryString    = strtolower($queryString);
+	$bashProfileCmd = strtolower(trim($bashProfileCmd));
 
 	if ( ! empty($bashProfileCmd)) {
 		// only check first part of query string, the rest is argument
@@ -194,7 +281,7 @@ function alfredItem(string $title, string $uid, string $arg, string $subTitle, b
 }
 
 /**
- * Get
+ * Get alias cmd
  *
  * @param $line
  *
@@ -210,15 +297,38 @@ function getAliasCmd($line, $queryString)
 	preg_match($regex, $line, $matches);
 	if ( ! empty($matches)) {
 		$matchedAlias = $matches[0];
-		$alias        = str_replace([' ', 'alias', '='], '', $matchedAlias);
-
+		$alias        = str_replace([' ', '='], '', $matchedAlias);
+		// replace first one alias
+		$alias = preg_replace('/alias/', '', $alias, 1);
 		if (alfredQueryMatch($queryString, $alias)) {
 			$content    = str_replace(["'", '"', '\t'], '', substr($line, strlen($matchedAlias)));
 			$contentArr = explode('#', $content);
 			$detail     = trim($contentArr[0] ?? '');
 			$comment    = trim($contentArr[1] ?? '');
 
-			return [$alias, $detail . ' #' . $comment];
+			return [$alias, ucfirst($comment) . ' |> ' . $detail];
+		}
+	}
+
+	return false;
+}
+
+function getFunctionCmds($line, $queryString)
+{
+
+	$matches = [];
+	// looking for 'func() or function func()'
+	$regex = "/^ *(function? +[\w\-_\.\~]+|[\w\-_\.\~]+) *\( *\) */";
+	preg_match($regex, $line, $matches);
+	if ( ! empty($matches)) {
+		$matchedFunc = $matches[0];
+		$func        = str_replace([' ', 'function', '(', ')'], '', $matchedFunc);
+		if (alfredQueryMatch($queryString, $func)) {
+			$contentArr = explode('#', $line);
+			$detail     = trim($contentArr[0] ?? '');
+			$comment    = trim($contentArr[1] ?? '');
+
+			return [$func, ucfirst($comment) . ' |> ' . $detail];
 		}
 	}
 

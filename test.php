@@ -7,6 +7,7 @@ $lines = file($profilePath);
 
 # test commands
 $tests       = [];
+
 $queryString = 'vg';
 $tests[]     = getBashCommands($lines, $queryString);
 
@@ -16,7 +17,16 @@ $tests[]     = getBashCommands($lines, $queryString);
 $queryString = 'l';
 $tests[]     = getBashCommands($lines, $queryString);
 
-//print_r($tests);
+$queryString = 'numFiles';
+$tests[]     = getBashCommands($lines, $queryString);
+
+$queryString = 'ql ';
+$tests[]     = getBashCommands($lines, $queryString);
+
+$queryString = 'ql ~/test.txt';
+$tests[]     = getBashCommands($lines, $queryString);
+
+print_r($tests);
 
 
 # test function getAllAlias
@@ -34,6 +44,19 @@ $testAlias = [
 	"   alias='less -FSRXc'  ",
 ];
 
+$testFuncs = [
+	"trash () { command mv \"$@\" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash",
+	"func(){ } #comment",
+	" func() # comment",
+	" func(  ) ",
+	" function func() ",
+	"function    func() ",
+
+];
+
+foreach ($testFuncs as $func) {
+//	print_r(getFunctionCmds($func, 'func')).PHP_EOL;
+}
 
 foreach ($testAlias as $line) {
 //	print_r(getAliasCmd($line, 'l')).PHP_EOL;
@@ -51,3 +74,4 @@ $testCmds = [
 foreach ($testCmds as $cmd) {
 //	print_r(splitCamelCaseString($cmd)).PHP_EOL;
 }
+

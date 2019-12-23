@@ -5,7 +5,7 @@ This workflow enable Alfred run alias or functions that come from ~/.bash_profil
 Download and install the workflow in alfred.
 
 ## Run
-Type ! 
+Type > 
 
 The workflow will auto display alias and functions from bash_profile.
 
