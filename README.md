@@ -1,5 +1,5 @@
 # Alfred bash profile workflow
-This workflow enable Alfred run alias or functions that come from ~/.bash_profile.
+This workflow enable Alfred run alias or functions that come from ~/.bash_profile and ~/my_bash/profile.sh ([Common bash profile alias and functions](https://github.com/186dk/my_bash)).
 
 ## Install
 Download and install the workflow in alfred.
@@ -7,7 +7,8 @@ Download and install the workflow in alfred.
 ## Run
 Type > 
 
-The workflow will auto display alias and functions from bash_profile.
+The workflow will auto display alias and functions from bash_profile. E.g.
+![Alfred bash cmd](./alfred.png)
 
 ## Add custom comment for alfred to read
 You may need to add comment tags for your alias or functions in .bash_profile for alfred to read with following format:
