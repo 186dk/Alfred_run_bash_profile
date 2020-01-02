@@ -116,7 +116,7 @@ function getBashCommands(array $lines, string $queryString, $withParameter = fal
 			// check if contains parameter string
 			if ( ! empty($parameterString)) {
 				$valid           = false;
-				$parameterString = '(' . $parameterString . ')';
+				$parameterString = ' <' . $parameterString . '>';
 			}else{
 				// if without parameter string, is valid
 				$valid = true;
@@ -318,8 +318,8 @@ function getFunctionCmds($line, $queryString)
 {
 
 	$matches = [];
-	// looking for 'func() or function func()'
-	$regex = "/^ *(function? +[\w\-_\.\~]+|[\w\-_\.\~]+) *\( *\) */";
+	// looking for 'func() or function func()' and not start with _
+	$regex = "/^ *(function? +(?!_)[\w\-_\.\~]+|(?!_)[\w\-_\.\~]+) *\( *\) */";
 	preg_match($regex, $line, $matches);
 	if ( ! empty($matches)) {
 		$matchedFunc = $matches[0];

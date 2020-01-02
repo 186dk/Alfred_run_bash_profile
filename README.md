@@ -31,7 +31,8 @@ Where keyword
     # parameters: path (or var: path | none)
     trash () { command mv "$@" ~/.Trash ; }
     ```
-    Can use parameter|parameters|var
+ 0. Can use parameter, parameters, var as parameter keyword
+ 0. If there has function inside function, the inner function need start with _ for ignoring indexing in alfred.
 ## Test
 In workflow source folder, run command: 
 ```php
