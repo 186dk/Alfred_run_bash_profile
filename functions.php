@@ -69,7 +69,7 @@ function getBashCommands(array $lines, string $queryString, $withParameter = fal
 					$cmd .= 'Cmd: ' . $bashCmd;
 				}
 
-				if ($key === 'parameters') {
+				if ($key === 'parameters' | $key === 'var') {
 					if ($value === 'none') {
 						$valid = true;
 					}
@@ -88,9 +88,9 @@ function getBashCommands(array $lines, string $queryString, $withParameter = fal
 			$clearCommentString = true;
 
 		} else if ($aliasCmdArr = getAliasCmd($line, $queryString)) {
-			[$commentString] = getCommentLines($commentContainer);
-
 			// check if it is alias
+
+			[$commentString] = getCommentLines($commentContainer);
 			[$aliasCmd, $content] = $aliasCmdArr;
 
 			$title              = 'Alias: ' . $aliasCmd;
@@ -102,8 +102,8 @@ function getBashCommands(array $lines, string $queryString, $withParameter = fal
 			$clearCommentString = true;
 
 		} else if ($funcCmdArr = getFunctionCmds($line, $queryString)) {
-			[$commentString, $parameterString] = getCommentLines($commentContainer);
 			// check if it is functions
+			[$commentString, $parameterString] = getCommentLines($commentContainer);
 			[$funcCmd, $content] = $funcCmdArr;
 
 			// check with parameter
@@ -127,6 +127,7 @@ function getBashCommands(array $lines, string $queryString, $withParameter = fal
 				$stop = true;
 				if (preg_match("/ *none */i", $parameterString)) {
 					$valid = true;
+					$arg = $queryString;
 				} elseif (isset($firstPara) && ! empty($firstPara)) {
 					$valid    = true;
 					$arg = $queryString;

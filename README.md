@@ -28,7 +28,7 @@ Where keyword
 0. Add comment and parameter hint in alias functions as following:
     ```
     # Moves a file to the MacOS trash
-    # parameters: path
+    # parameters: path (or var: path | none)
     trash () { command mv "$@" ~/.Trash ; }
     ```
     Can use parameter|parameters|var
