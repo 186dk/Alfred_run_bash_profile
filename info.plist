@@ -126,74 +126,9 @@
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>alfredfiltersresults</key>
-				<false/>
-				<key>alfredfiltersresultsmatchmode</key>
-				<integer>0</integer>
-				<key>argumenttreatemptyqueryasnil</key>
-				<true/>
-				<key>argumenttrimmode</key>
-				<integer>1</integer>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>100</integer>
-				<key>keyword</key>
-				<string>pppppp</string>
-				<key>queuedelaycustom</key>
-				<integer>3</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<false/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>2</integer>
-				<key>runningsubtext</key>
-				<string>w...</string>
-				<key>script</key>
-				<string>&lt;?php
-
-$query = $argv[1];
-
-echo '{"items":
-
-[
-{"valid":"true","arg":"vg","uid":"vg","title":"vg (parameter: up, destory, ssh) ","subtitle":" vagrant command on homestead"},
-{"valid":"true","arg":"cl","uid":"cl","title":"cl (parameter: path) ","subtitle":" cd to path and ls"},
-{"valid":"false",
-"arg":"chrome",
-"autocomplete":"chrome",
-"uid":"chrome","title":"chrome (parameter:  url (without http)) ","subtitle":" chrome open url"}
-]
-}';
-
-?&gt;</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string>test</string>
-				<key>title</key>
-				<string>test</string>
-				<key>type</key>
-				<integer>1</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>96B0F6B6-BF2C-4F32-BCFB-64D81D2BE060</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>This workflow enable Alfred run alias or functions that come from ~/.bash_profile</string>
 	<key>uidata</key>
 	<dict>
 		<key>5B3E0213-A19B-47EA-9E74-7E8A04DCFDB8</key>
@@ -209,13 +144,6 @@ echo '{"items":
 			<integer>55</integer>
 			<key>ypos</key>
 			<integer>65</integer>
-		</dict>
-		<key>96B0F6B6-BF2C-4F32-BCFB-64D81D2BE060</key>
-		<dict>
-			<key>xpos</key>
-			<integer>500</integer>
-			<key>ypos</key>
-			<integer>285</integer>
 		</dict>
 		<key>ADADAF7A-C425-47C7-9498-68D3B5F18BC7</key>
 		<dict>

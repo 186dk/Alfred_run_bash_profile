@@ -4,19 +4,19 @@ include 'functions.php';
 $argv[0]     = '';
 $queryString = $argv[1];
 $searchArr   = explode(' ', $queryString);
-$home        = $_SERVER['HOME'];
+$home        = $_SERVER['HOME'] . '/';
 
-$bashProfilePath = $home . '/.bash_profile';
-$myBashProfilePath = $home . '/my_bash/profile.sh';
+$paths = ['.bash_profile', 'my_bash/profile.sh', '.profile', '.zprofile'];
 
 $lines = [];
-if (file_exists($bashProfilePath)) {
-	$lines = file($bashProfilePath);
-}
-
-if (file_exists($myBashProfilePath)){
-	$myBashLines = file($myBashProfilePath);
-	$lines = array_merge($lines, $myBashLines);
+foreach ($paths as $path) {
+	$fullPath = $home . $path;
+	if (file_exists($fullPath)) {
+		$fileLines = file($fullPath);
+		foreach ($fileLines as $fileLine) {
+			$lines[] = $fileLine;
+		}
+	}
 }
 
 //Get bash profile from home path;
