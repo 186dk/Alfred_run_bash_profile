@@ -1,5 +1,5 @@
 # Alfred bash profile workflow
-This workflow enable Alfred run alias or functions that come from ~/.profile, ~/.zprofile, ~/.bash_profile and ~/my_bash/profile.sh ([Common bash profile alias and functions template](https://github.com/186dk/my_bash)).
+This workflow enable Alfred to execute alias or functions that come from ~/.profile, ~/.zprofile, ~/.bash_profile and ~/my_bash/profile.sh ([Common bash profile alias and functions template](https://github.com/186dk/my_bash)) in background, and display output to alfred large type and notification.
 
 ## Install
 Download and install the workflow in alfred.
@@ -9,6 +9,16 @@ Type >
 
 The workflow will auto display alias and functions from profiles. E.g.
 ![Alfred bash cmd](./alfred.png)
+
+## Usage
+The workflow scan bash profile, and display aliases and functions automatically. You can add description and arguments hint manually before each aliases or functions in profile file as following: 
+
+````shell script
+#Find a command in your grep history
+#var: file name
+his () { history | grep "$@" ; }
+````
+ 
 
 ## Add custom comment for alfred to read
 You may need to add comment tags for your alias or functions in profiles for alfred to read with following format:

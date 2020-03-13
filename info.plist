@@ -8,13 +8,11 @@
 	<string>Tools</string>
 	<key>connections</key>
 	<dict>
-		<key>5B3E0213-A19B-47EA-9E74-7E8A04DCFDB8</key>
-		<array/>
-		<key>60525BB6-8496-4824-A6B7-0740BA78049C</key>
+		<key>039EEFD9-10FD-4C62-B31A-E80C5740440E</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>ADADAF7A-C425-47C7-9498-68D3B5F18BC7</string>
+				<string>A957C86E-F00F-403D-87F4-D91FEE24A67A</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -23,11 +21,83 @@
 				<false/>
 			</dict>
 		</array>
-		<key>ADADAF7A-C425-47C7-9498-68D3B5F18BC7</key>
+		<key>3BE844B8-D9ED-4A22-9D7F-C106304B899B</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>5B3E0213-A19B-47EA-9E74-7E8A04DCFDB8</string>
+				<string>C5145C54-5E9A-45AC-93F6-6ADB494F84A0</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>60525BB6-8496-4824-A6B7-0740BA78049C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3BE844B8-D9ED-4A22-9D7F-C106304B899B</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Runn command on alfred and copy to clipboard</string>
+				<key>vitoclose</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>039EEFD9-10FD-4C62-B31A-E80C5740440E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>6E7D6402-7C69-4C14-8407-EB0F9EE45C72</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Run cmd in terminal</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>A957C86E-F00F-403D-87F4-D91FEE24A67A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>4C8731E5-A3AF-41A9-96B3-FD962211CF97</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>C5145C54-5E9A-45AC-93F6-6ADB494F84A0</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D26CAAAF-D50A-4054-9AA4-0CB85193A0EA</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>D26CAAAF-D50A-4054-9AA4-0CB85193A0EA</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>4D112991-D120-4680-B1D4-041717C6C781</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -40,13 +110,107 @@
 	<key>createdby</key>
 	<string>Martin Shi</string>
 	<key>description</key>
-	<string>Run alias or function of .bash_profile</string>
+	<string>Run alias or function of .bash_profile, .zprofile and .profile.</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>Bash profile commands</string>
+	<string>Bash Profile commands</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alignment</key>
+				<integer>0</integer>
+				<key>backgroundcolor</key>
+				<string></string>
+				<key>fadespeed</key>
+				<integer>0</integer>
+				<key>fillmode</key>
+				<integer>1</integer>
+				<key>font</key>
+				<string>System Light</string>
+				<key>largetypetext</key>
+				<string>{query}</string>
+				<key>textcolor</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.largetype</string>
+			<key>uid</key>
+			<string>C5145C54-5E9A-45AC-93F6-6ADB494F84A0</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>D26CAAAF-D50A-4054-9AA4-0CB85193A0EA</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>shopt -s expand_aliases
+
+if [ -f "${HOME}/.bash_profile" ] ; then
+	cd ${HOME}
+	source "${HOME}/.bash_profile"
+	PATH=$PATH:/usr/local/bin
+fi
+
+{query} | sed $'s,\x1b\\[[0-9;]*[a-zA-Z],,g' 2&gt;&amp;1 &amp;</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>3BE844B8-D9ED-4A22-9D7F-C106304B899B</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>The cmd result has copied in clipboard</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>4D112991-D120-4680-B1D4-041717C6C781</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -99,6 +263,83 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>shopt -s expand_aliases
+
+if [ -f "${HOME}/.bash_profile" ] ; then
+	cd ${HOME}
+	source "${HOME}/.bash_profile"
+	PATH=$PATH:/usr/local/bin
+fi
+
+{query} | sed $'s,\x1b\\[[0-9;]*[a-zA-Z],,g' 2&gt;&amp;1 &amp;</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>039EEFD9-10FD-4C62-B31A-E80C5740440E</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alignment</key>
+				<integer>0</integer>
+				<key>backgroundcolor</key>
+				<string></string>
+				<key>fadespeed</key>
+				<integer>0</integer>
+				<key>fillmode</key>
+				<integer>1</integer>
+				<key>font</key>
+				<string>System Light</string>
+				<key>largetypetext</key>
+				<string>{query}</string>
+				<key>textcolor</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.largetype</string>
+			<key>uid</key>
+			<string>A957C86E-F00F-403D-87F4-D91FEE24A67A</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>The bash cmd have executed!</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>4C8731E5-A3AF-41A9-96B3-FD962211CF97</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
@@ -107,56 +348,83 @@
 			<key>type</key>
 			<string>alfred.workflow.action.terminalcommand</string>
 			<key>uid</key>
-			<string>5B3E0213-A19B-47EA-9E74-7E8A04DCFDB8</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string>{query}</string>
-				<key>variables</key>
-				<dict/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>ADADAF7A-C425-47C7-9498-68D3B5F18BC7</string>
+			<string>6E7D6402-7C69-4C14-8407-EB0F9EE45C72</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>This workflow enable Alfred run alias or functions that come from ~/.bash_profile</string>
+	<string>This workflow enable Alfred to run alias or functions that come from ~/.bash_profile, ~/.profile and ~/.zprofile in background or terminal. The workflow show the cmd output in large type.</string>
 	<key>uidata</key>
 	<dict>
-		<key>5B3E0213-A19B-47EA-9E74-7E8A04DCFDB8</key>
+		<key>039EEFD9-10FD-4C62-B31A-E80C5740440E</key>
 		<dict>
 			<key>xpos</key>
-			<integer>510</integer>
+			<integer>420</integer>
 			<key>ypos</key>
-			<integer>115</integer>
+			<integer>280</integer>
+		</dict>
+		<key>3BE844B8-D9ED-4A22-9D7F-C106304B899B</key>
+		<dict>
+			<key>xpos</key>
+			<integer>420</integer>
+			<key>ypos</key>
+			<integer>110</integer>
+		</dict>
+		<key>4C8731E5-A3AF-41A9-96B3-FD962211CF97</key>
+		<dict>
+			<key>xpos</key>
+			<integer>905</integer>
+			<key>ypos</key>
+			<integer>280</integer>
+		</dict>
+		<key>4D112991-D120-4680-B1D4-041717C6C781</key>
+		<dict>
+			<key>xpos</key>
+			<integer>1095</integer>
+			<key>ypos</key>
+			<integer>110</integer>
 		</dict>
 		<key>60525BB6-8496-4824-A6B7-0740BA78049C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>55</integer>
+			<integer>45</integer>
 			<key>ypos</key>
-			<integer>65</integer>
+			<integer>275</integer>
 		</dict>
-		<key>ADADAF7A-C425-47C7-9498-68D3B5F18BC7</key>
+		<key>6E7D6402-7C69-4C14-8407-EB0F9EE45C72</key>
 		<dict>
 			<key>xpos</key>
-			<integer>340</integer>
+			<integer>420</integer>
 			<key>ypos</key>
-			<integer>130</integer>
+			<integer>465</integer>
+		</dict>
+		<key>A957C86E-F00F-403D-87F4-D91FEE24A67A</key>
+		<dict>
+			<key>xpos</key>
+			<integer>665</integer>
+			<key>ypos</key>
+			<integer>280</integer>
+		</dict>
+		<key>C5145C54-5E9A-45AC-93F6-6ADB494F84A0</key>
+		<dict>
+			<key>xpos</key>
+			<integer>660</integer>
+			<key>ypos</key>
+			<integer>110</integer>
+		</dict>
+		<key>D26CAAAF-D50A-4054-9AA4-0CB85193A0EA</key>
+		<dict>
+			<key>xpos</key>
+			<integer>905</integer>
+			<key>ypos</key>
+			<integer>110</integer>
 		</dict>
 	</dict>
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>v1.0</string>
+	<string>v1.2</string>
 	<key>webaddress</key>
 	<string>186.dk</string>
 </dict>
