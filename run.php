@@ -6,7 +6,7 @@ $queryString = $argv[1];
 $searchArr   = explode(' ', $queryString);
 $home        = $_SERVER['HOME'] . '/';
 
-$paths = ['.bash_profile', 'my_bash/profile.sh', '.profile', '.zprofile'];
+$paths = ['.bash_profile', 'my-git-note/bin/my_git_profile.sh', 'my-git-note/bin/common_profile.sh', '.profile', '.zprofile', 'Desktop/bonnier-git-note/bonnier_profile.sh'];
 
 $lines = [];
 foreach ($paths as $path) {

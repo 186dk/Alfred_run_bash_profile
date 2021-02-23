@@ -106,6 +106,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>F5E4A02C-4359-40BB-923C-BD59CE228577</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>60525BB6-8496-4824-A6B7-0740BA78049C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Martin Shi</string>
@@ -130,10 +143,14 @@
 				<integer>1</integer>
 				<key>font</key>
 				<string>System Light</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
 				<key>largetypetext</key>
 				<string>{query}</string>
 				<key>textcolor</key>
 				<string></string>
+				<key>wrapat</key>
+				<integer>50</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.output.largetype</string>
@@ -149,6 +166,8 @@
 				<false/>
 				<key>clipboardtext</key>
 				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
 				<key>transient</key>
 				<false/>
 			</dict>
@@ -276,6 +295,10 @@ if [ -f "${HOME}/.bash_profile" ] ; then
 	PATH=$PATH:/usr/local/bin
 fi
 
+if [ -d "${HOME}/my-git-note" ] ; then
+	cd ${HOME}/my-git-note
+fi
+
 {query} | sed $'s,\x1b\\[[0-9;]*[a-zA-Z],,g' 2&gt;&amp;1 &amp;</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
@@ -304,10 +327,14 @@ fi
 				<integer>1</integer>
 				<key>font</key>
 				<string>System Light</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
 				<key>largetypetext</key>
 				<string>{query}</string>
 				<key>textcolor</key>
 				<string></string>
+				<key>wrapat</key>
+				<integer>50</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.output.largetype</string>
@@ -336,6 +363,37 @@ fi
 			<string>4C8731E5-A3AF-41A9-96B3-FD962211CF97</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>17</integer>
+				<key>hotmod</key>
+				<integer>1703936</integer>
+				<key>hotstring</key>
+				<string>T</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>F5E4A02C-4359-40BB-923C-BD59CE228577</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -388,9 +446,9 @@ fi
 		<key>60525BB6-8496-4824-A6B7-0740BA78049C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>45</integer>
+			<integer>185</integer>
 			<key>ypos</key>
-			<integer>275</integer>
+			<integer>210</integer>
 		</dict>
 		<key>6E7D6402-7C69-4C14-8407-EB0F9EE45C72</key>
 		<dict>
@@ -419,6 +477,13 @@ fi
 			<integer>905</integer>
 			<key>ypos</key>
 			<integer>110</integer>
+		</dict>
+		<key>F5E4A02C-4359-40BB-923C-BD59CE228577</key>
+		<dict>
+			<key>xpos</key>
+			<integer>15</integer>
+			<key>ypos</key>
+			<integer>340</integer>
 		</dict>
 	</dict>
 	<key>variablesdontexport</key>
